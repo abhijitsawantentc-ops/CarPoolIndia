@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:CarPoolIndia.ViewModels"
+             x:Class="CarPoolIndia.Views.SupportPage"
+             x:DataType="vm:SupportViewModel"
+             Title="How It Works &amp; Support"
+             BackgroundColor="#0B0F19">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="16" Padding="16">
+
+            <!-- Header -->
+            <Border StrokeShape="RoundRectangle 16"
+                    BackgroundColor="#111827"
+                    Stroke="#1F2937"
+                    Padding="16">
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="How Group Buying Works"
+                           FontSize="22"
+                           FontAttributes="Bold"
+                           TextColor="#F9FAFB"/>
+                    <Label Text="Transparent, dealer-safe bulk aggregation for India's favorite cars."
+                           FontSize="13"
+                           TextColor="#9CA3AF"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- 4 Step Guide -->
+            <Border StrokeShape="RoundRectangle 16"
+                    BackgroundColor="#111827"
+                    Stroke="#1F2937"
+                    Padding="16">
+                <VerticalStackLayout Spacing="14">
+
+                    <!-- Step 1 -->
+                    <Grid ColumnDefinitions="36, *">
+                        <Border StrokeShape="RoundRectangle 18" BackgroundColor="#1E3A8A" WidthRequest="32" HeightRequest="32" VerticalOptions="Start">
+                            <Label Text="1" TextColor="#93C5FD" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        </Border>
+                        <VerticalStackLayout Grid.Column="1" Spacing="2">
+                            <Label Text="Select Your High-Volume SUV" FontSize="14" FontAttributes="Bold" TextColor="#F3F4F6"/>
+                            <Label Text="Browse regional pools for top sellers (Creta, Nexon, Brezza, Scorpio-N)." FontSize="12" TextColor="#9CA3AF"/>
+                        </VerticalStackLayout>
+                    </Grid>
+
+                    <!-- Step 2 -->
+                    <Grid ColumnDefinitions="36, *">
+                        <Border StrokeShape="RoundRectangle 18" BackgroundColor="#065F46" WidthRequest="32" HeightRequest="32" VerticalOptions="Start">
+                            <Label Text="2" TextColor="#A7F3D0" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        </Border>
+                        <VerticalStackLayout Grid.Column="1" Spacing="2">
+                            <Label Text="Commit ₹5,000 Refundable Token via UPI" FontSize="14" FontAttributes="Bold" TextColor="#F3F4F6"/>
+                            <Label Text="Secure your spot in the bulk buyer pool. Your deposit is 100% refundable at any time until deal lock." FontSize="12" TextColor="#9CA3AF"/>
+                        </VerticalStackLayout>
+                    </Grid>
+
+                    <!-- Step 3 -->
+                    <Grid ColumnDefinitions="36, *">
+                        <Border StrokeShape="RoundRectangle 18" BackgroundColor="#5B21B6" WidthRequest="32" HeightRequest="32" VerticalOptions="Start">
+                            <Label Text="3" TextColor="#DDD6FE" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        </Border>
+                        <VerticalStackLayout Grid.Column="1" Spacing="2">
+                            <Label Text="Quorum Lock &amp; Offline Dealer Negotiation" FontSize="14" FontAttributes="Bold" TextColor="#F3F4F6"/>
+                            <Label Text="Once the pool quorum (15-30 buyers) is reached, our admin team negotiates bulk fleet pricing offline with regional authorized brand dealerships." FontSize="12" TextColor="#9CA3AF"/>
+                        </VerticalStackLayout>
+                    </Grid>
+
+                    <!-- Step 4 -->
+                    <Grid ColumnDefinitions="36, *">
+                        <Border StrokeShape="RoundRectangle 18" BackgroundColor="#831843" WidthRequest="32" HeightRequest="32" VerticalOptions="Start">
+                            <Label Text="4" TextColor="#FBCFE8" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        </Border>
+                        <VerticalStackLayout Grid.Column="1" Spacing="2">
+                            <Label Text="Authorized Dealership Delivery &amp; Invoicing" FontSize="14" FontAttributes="Bold" TextColor="#F3F4F6"/>
+                            <Label Text="You pay the discounted balance directly to the authorized OEM dealer, receive your official invoice, factory warranty, and vehicle delivery." FontSize="12" TextColor="#9CA3AF"/>
+                        </VerticalStackLayout>
+                    </Grid>
+
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Offline Admin Architecture Context Card -->
+            <Border StrokeShape="RoundRectangle 16"
+                    BackgroundColor="#1E1B4B"
+                    Stroke="#4338CA"
+                    Padding="16">
+                <VerticalStackLayout Spacing="8">
+                    <HorizontalStackLayout Spacing="8">
+                        <Label Text="🔒" FontSize="18" VerticalOptions="Center"/>
+                        <Label Text="Why is there No Dealer Portal?"
+                               FontSize="15"
+                               FontAttributes="Bold"
+                               TextColor="#E0E7FF"/>
+                    </HorizontalStackLayout>
+                    <Label Text="Automobile manufacturers and dealers operate through private regional quotas and confidential volume targets. To protect dealer franchise agreements and eliminate friction, CarPool India administrators handle all coordination, VIN tagging, and bulk allocation offline directly with dealership General Managers."
+                           FontSize="12"
+                           TextColor="#C7D2FE"
+                           LineHeight="1.4"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Support & WhatsApp Concierge -->
+            <Border StrokeShape="RoundRectangle 16"
+                    BackgroundColor="#111827"
+                    Stroke="#1F2937"
+                    Padding="16">
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="Need Assistance? Talk to Our Admin Desk"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           TextColor="#F9FAFB"/>
+
+                    <Button Text="💬 Chat on WhatsApp (+91 98765 43210)"
+                            BackgroundColor="#15803D"
+                            TextColor="#FFFFFF"
+                            FontAttributes="Bold"
+                            FontSize="13"
+                            HeightRequest="46"
+                            CornerRadius="10"
+                            Command="{Binding OpenWhatsAppCommand}"/>
+
+                    <Button Text="📞 Call Admin Helpline"
+                            BackgroundColor="#374151"
+                            TextColor="#F9FAFB"
+                            FontAttributes="Bold"
+                            FontSize="13"
+                            HeightRequest="44"
+                            CornerRadius="10"
+                            Command="{Binding CallConciergeCommand}"/>
+                </VerticalStackLayout>
+            </Border>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:CarPoolIndia.ViewModels"
+             xmlns:models="clr-namespace:CarPoolIndia.Models"
+             x:Class="CarPoolIndia.Views.BookingsPage"
+             x:DataType="vm:BookingsViewModel"
+             Title="My Bookings"
+             BackgroundColor="#0B0F19">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="16" Padding="16">
+
+            <!-- Header -->
+            <Border StrokeShape="RoundRectangle 16"
+                    BackgroundColor="#111827"
+                    Stroke="#1F2937"
+                    Padding="16">
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="My Group Commitments"
+                           FontSize="22"
+                           FontAttributes="Bold"
+                           TextColor="#F9FAFB"/>
+                    <Label Text="Track quorum progress, token payments, and offline regional dealer allocations."
+                           FontSize="13"
+                           TextColor="#9CA3AF"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Bookings CollectionView -->
+            <CollectionView ItemsSource="{Binding Bookings}" SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:BuyerBooking">
+                        <Border StrokeShape="RoundRectangle 16"
+                                BackgroundColor="#111827"
+                                Stroke="#1F2937"
+                                Margin="0,0,0,16"
+                                Padding="16">
+                            <VerticalStackLayout Spacing="12">
+
+                                <!-- Top Row: Booking ID and Status Badge -->
+                                <Grid ColumnDefinitions="*, Auto">
+                                    <VerticalStackLayout Spacing="2">
+                                        <Label Text="{Binding BookingId}"
+                                               FontSize="15"
+                                               FontAttributes="Bold"
+                                               TextColor="#60A5FA"/>
+                                        <Label Text="{Binding BookingDate, StringFormat='Booked on {0:dd MMM yyyy}'}"
+                                               FontSize="11"
+                                               TextColor="#6B7280"/>
+                                    </VerticalStackLayout>
+
+                                    <Border Grid.Column="1"
+                                            StrokeShape="RoundRectangle 8"
+                                            BackgroundColor="#065F46"
+                                            Padding="10,4">
+                                        <Label Text="{Binding PaymentStatus, StringFormat='₹5,000 {0}'}"
+                                               FontSize="11"
+                                               FontAttributes="Bold"
+                                               TextColor="#A7F3D0"/>
+                                    </Border>
+                                </Grid>
+
+                                <!-- Vehicle & Variant Info -->
+                                <Label Text="{Binding VehicleName}"
+                                       FontSize="18"
+                                       FontAttributes="Bold"
+                                       TextColor="#F9FAFB"/>
+
+                                <Grid ColumnDefinitions="*, *" RowDefinitions="Auto, Auto" RowSpacing="6">
+                                    <VerticalStackLayout Grid.Row="0" Grid.Column="0">
+                                        <Label Text="Selected Variant" FontSize="11" TextColor="#6B7280"/>
+                                        <Label Text="{Binding SelectedVariant}" FontSize="12" TextColor="#D1D5DB" FontAttributes="Bold"/>
+                                    </VerticalStackLayout>
+
+                                    <VerticalStackLayout Grid.Row="0" Grid.Column="1">
+                                        <Label Text="Color" FontSize="11" TextColor="#6B7280"/>
+                                        <Label Text="{Binding SelectedColor}" FontSize="12" TextColor="#D1D5DB" FontAttributes="Bold"/>
+                                    </VerticalStackLayout>
+
+                                    <VerticalStackLayout Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+                                        <Label Text="RTO Registration City" FontSize="11" TextColor="#6B7280"/>
+                                        <Label Text="{Binding CityRto}" FontSize="12" TextColor="#38BDF8" FontAttributes="Bold"/>
+                                    </VerticalStackLayout>
+                                </Grid>
+
+                                <!-- Offline Dealer Coordination Status Card -->
+                                <Border StrokeShape="RoundRectangle 10"
+                                        BackgroundColor="#1E1B4B"
+                                        Stroke="#312E81"
+                                        Padding="12,10">
+                                    <VerticalStackLayout Spacing="4">
+                                        <HorizontalStackLayout Spacing="6">
+                                            <Label Text="🏢" FontSize="14" VerticalOptions="Center"/>
+                                            <Label Text="Offline Dealership Allocation"
+                                                   FontSize="12"
+                                                   FontAttributes="Bold"
+                                                   TextColor="#C7D2FE"/>
+                                        </HorizontalStackLayout>
+                                        <Label Text="{Binding DealershipStatusNote}"
+                                               FontSize="11"
+                                               TextColor="#E0E7FF"
+                                               LineHeight="1.3"/>
+                                    </VerticalStackLayout>
+                                </Border>
+
+                                <!-- Actions -->
+                                <Grid ColumnDefinitions="*, Auto" ColumnSpacing="8">
+                                    <Button Text="View Status Details"
+                                            BackgroundColor="#374151"
+                                            TextColor="#F3F4F6"
+                                            FontSize="12"
+                                            HeightRequest="40"
+                                            CornerRadius="8"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type vm:BookingsViewModel}}, Path=ViewStatusDetailsCommand}"
+                                            CommandParameter="{Binding .}"/>
+
+                                    <Button Grid.Column="1"
+                                            Text="Cancel &amp; Refund"
+                                            BackgroundColor="#7F1D1D"
+                                            TextColor="#FECACA"
+                                            FontSize="12"
+                                            HeightRequest="40"
+                                            CornerRadius="8"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type vm:BookingsViewModel}}, Path=CancelBookingCommand}"
+                                            CommandParameter="{Binding .}"/>
+                                </Grid>
+
+                            </VerticalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

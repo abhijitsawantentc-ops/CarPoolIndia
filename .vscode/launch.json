@@ -1,0 +1,20 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Windows Machine (Desktop)",
+            "type": "coreclr",
+            "request": "launch",
+            "program": "${workspaceFolder}/bin/Debug/net10.0-windows10.0.19041.0/win-x64/CarPoolIndia.exe",
+            "cwd": "${workspaceFolder}/bin/Debug/net10.0-windows10.0.19041.0/win-x64",
+            "preLaunchTask": "build-windows"
+        },
+        {
+            "name": ".NET MAUI (Android)",
+            "type": "coreclr",
+            "request": "launch",
+            "program": "${workspaceFolder}/bin/Debug/net10.0-android/CarPoolIndia.dll",
+            "preLaunchTask": "build-android"
+        }
+    ]
+}

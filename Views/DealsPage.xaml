@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:CarPoolIndia.ViewModels"
+             xmlns:models="clr-namespace:CarPoolIndia.Models"
+             x:Class="CarPoolIndia.Views.DealsPage"
+             x:DataType="vm:DealsViewModel"
+             Title="Curated Deals"
+             BackgroundColor="#0B0F19">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="16" Padding="16">
+
+            <!-- Hero Header -->
+            <Border StrokeShape="RoundRectangle 16"
+                    BackgroundColor="#111827"
+                    Stroke="#1F2937"
+                    Padding="16">
+                <VerticalStackLayout Spacing="6">
+                    <HorizontalStackLayout Spacing="8" VerticalOptions="Center">
+                        <Label Text="🚗" FontSize="24" VerticalOptions="Center"/>
+                        <Label Text="CarPool India"
+                               FontSize="22"
+                               FontAttributes="Bold"
+                               TextColor="#F9FAFB" />
+                        <Border StrokeShape="RoundRectangle 12"
+                                BackgroundColor="#1E3A8A"
+                                Padding="8,2"
+                                StrokeThickness="0">
+                            <Label Text="Live Pools" FontSize="11" TextColor="#93C5FD" FontAttributes="Bold"/>
+                        </Border>
+                    </HorizontalStackLayout>
+
+                    <Label Text="Bulk Buying Power for Indian Car Buyers. Join high-volume vehicle pools, commit a ₹5,000 refundable UPI deposit, and unlock wholesale dealer fleet pricing."
+                           FontSize="13"
+                           TextColor="#9CA3AF"
+                           LineHeight="1.3" />
+
+                    <!-- Trust Pillar Pills -->
+                    <FlexLayout Wrap="Wrap" Direction="Row" JustifyContent="Start" AlignItems="Center">
+                        <Border StrokeShape="RoundRectangle 8" BackgroundColor="#064E3B" Padding="8,4" Margin="0,4,6,0">
+                            <Label Text="✓ 100% Refundable Deposit" FontSize="11" TextColor="#6EE7B7" FontAttributes="Bold"/>
+                        </Border>
+                        <Border StrokeShape="RoundRectangle 8" BackgroundColor="#312E81" Padding="8,4" Margin="0,4,6,0">
+                            <Label Text="✓ Offline Admin Negotiation" FontSize="11" TextColor="#A5B4FC" FontAttributes="Bold"/>
+                        </Border>
+                        <Border StrokeShape="RoundRectangle 8" BackgroundColor="#701A75" Padding="8,4" Margin="0,4,6,0">
+                            <Label Text="✓ Authorized Dealer Delivery" FontSize="11" TextColor="#F472B6" FontAttributes="Bold"/>
+                        </Border>
+                    </FlexLayout>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- City Filter Chips -->
+            <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Never">
+                <HorizontalStackLayout Spacing="8">
+                    <Button Text="All Cities"
+                            FontSize="12"
+                            HeightRequest="36"
+                            CornerRadius="18"
+                            BackgroundColor="#2563EB"
+                            TextColor="#FFFFFF"
+                            Command="{Binding FilterByCityCommand}"
+                            CommandParameter="All Cities"/>
+
+                    <Button Text="Bengaluru"
+                            FontSize="12"
+                            HeightRequest="36"
+                            CornerRadius="18"
+                            BackgroundColor="#1F2937"
+                            TextColor="#E5E7EB"
+                            Command="{Binding FilterByCityCommand}"
+                            CommandParameter="Bengaluru"/>
+
+                    <Button Text="Delhi NCR"
+                            FontSize="12"
+                            HeightRequest="36"
+                            CornerRadius="18"
+                            BackgroundColor="#1F2937"
+                            TextColor="#E5E7EB"
+                            Command="{Binding FilterByCityCommand}"
+                            CommandParameter="Delhi"/>
+
+                    <Button Text="Pune &amp; Mumbai"
+                            FontSize="12"
+                            HeightRequest="36"
+                            CornerRadius="18"
+                            BackgroundColor="#1F2937"
+                            TextColor="#E5E7EB"
+                            Command="{Binding FilterByCityCommand}"
+                            CommandParameter="Pune"/>
+
+                    <Button Text="Hyderabad"
+                            FontSize="12"
+                            HeightRequest="36"
+                            CornerRadius="18"
+                            BackgroundColor="#1F2937"
+                            TextColor="#E5E7EB"
+                            Command="{Binding FilterByCityCommand}"
+                            CommandParameter="Hyderabad"/>
+                </HorizontalStackLayout>
+            </ScrollView>
+
+            <!-- Live Pools List -->
+            <CollectionView ItemsSource="{Binding DisplayedPools}" SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:PoolCampaign">
+                        <Border StrokeShape="RoundRectangle 16"
+                                BackgroundColor="#111827"
+                                Stroke="#1F2937"
+                                Margin="0,0,0,16"
+                                Padding="0">
+                            <VerticalStackLayout Spacing="12">
+
+                                <!-- Car Header Image with Overlay Badges -->
+                                <Grid HeightRequest="190">
+                                    <Image Source="{Binding CarModel.ImageUrl}"
+                                           Aspect="AspectFill" />
+
+                                    <!-- Gradient Overlay -->
+                                    <BoxView Color="#000000" Opacity="0.35" />
+
+                                    <!-- Top Left City Badge -->
+                                    <Border HorizontalOptions="Start"
+                                            VerticalOptions="Start"
+                                            Margin="12"
+                                            StrokeShape="RoundRectangle 8"
+                                            BackgroundColor="#0F172AE6"
+                                            Stroke="#334155"
+                                            Padding="8,4">
+                                        <Label Text="{Binding TargetCity}"
+                                               FontSize="11"
+                                               FontAttributes="Bold"
+                                               TextColor="#38BDF8"/>
+                                    </Border>
+
+                                    <!-- Top Right Savings Tag -->
+                                    <Border HorizontalOptions="End"
+                                            VerticalOptions="Start"
+                                            Margin="12"
+                                            StrokeShape="RoundRectangle 8"
+                                            BackgroundColor="#065F46E6"
+                                            Stroke="#059669"
+                                            Padding="8,4">
+                                        <Label Text="{Binding FormattedSavings}"
+                                               FontSize="11"
+                                               FontAttributes="Bold"
+                                               TextColor="#A7F3D0"/>
+                                    </Border>
+                                </Grid>
+
+                                <!-- Details Content -->
+                                <VerticalStackLayout Spacing="10" Padding="16,0,16,16">
+
+                                    <!-- Vehicle Title & Segment -->
+                                    <Grid ColumnDefinitions="*, Auto">
+                                        <VerticalStackLayout Spacing="2">
+                                            <Label Text="{Binding CarModel.FullDisplayName}"
+                                                   FontSize="20"
+                                                   FontAttributes="Bold"
+                                                   TextColor="#F9FAFB"/>
+                                            <Label Text="{Binding CarModel.Segment, StringFormat='Segment: {0}'}"
+                                                   FontSize="12"
+                                                   TextColor="#9CA3AF"/>
+                                        </VerticalStackLayout>
+
+                                        <VerticalStackLayout Grid.Column="1" HorizontalOptions="End" Spacing="2">
+                                            <Label Text="{Binding FormattedBasePrice}"
+                                                   FontSize="18"
+                                                   FontAttributes="Bold"
+                                                   TextColor="#60A5FA"/>
+                                            <Label Text="Ex-Showroom"
+                                                   FontSize="11"
+                                                   TextColor="#9CA3AF"
+                                                   HorizontalOptions="End"/>
+                                        </VerticalStackLayout>
+                                    </Grid>
+
+                                    <!-- Deal Perk Highlight Banner -->
+                                    <Border StrokeShape="RoundRectangle 10"
+                                            BackgroundColor="#1E1B4B"
+                                            Stroke="#4338CA"
+                                            Padding="10,8">
+                                        <HorizontalStackLayout Spacing="8">
+                                            <Label Text="🎁" FontSize="14" VerticalOptions="Center"/>
+                                            <Label Text="{Binding OfferPerks}"
+                                                   FontSize="12"
+                                                   FontAttributes="Bold"
+                                                   TextColor="#C7D2FE"
+                                                   LineBreakMode="WordWrap"/>
+                                        </HorizontalStackLayout>
+                                    </Border>
+
+                                    <!-- Quorum Progress Indicator -->
+                                    <VerticalStackLayout Spacing="4">
+                                        <Grid ColumnDefinitions="*, Auto">
+                                            <Label Text="{Binding CurrentBuyers, StringFormat='Group Quorum: {0} committed'}"
+                                                   FontSize="12"
+                                                   TextColor="#E5E7EB"
+                                                   FontAttributes="Bold"/>
+                                            <Label Grid.Column="1"
+                                                   Text="{Binding MinBuyers, StringFormat='Goal: {0} buyers'}"
+                                                   FontSize="12"
+                                                   TextColor="#9CA3AF"/>
+                                        </Grid>
+
+                                        <ProgressBar Progress="{Binding ProgressRatio}"
+                                                     ProgressColor="#10B981"
+                                                     HeightRequest="8"/>
+
+                                        <Grid ColumnDefinitions="*, Auto">
+                                            <Label Text="{Binding BuyersRemaining, StringFormat='Only {0} spots needed to lock pool'}"
+                                                   FontSize="11"
+                                                   TextColor="#34D399"/>
+                                            <Label Grid.Column="1"
+                                                   Text="{Binding ProgressPercentage, StringFormat='{0}% Complete'}"
+                                                   FontSize="11"
+                                                   TextColor="#9CA3AF"/>
+                                        </Grid>
+                                    </VerticalStackLayout>
+
+                                    <!-- Action Button -->
+                                    <Button Text="Commit ₹5,000 Token via UPI"
+                                            BackgroundColor="#2563EB"
+                                            TextColor="#FFFFFF"
+                                            FontAttributes="Bold"
+                                            FontSize="14"
+                                            HeightRequest="48"
+                                            CornerRadius="12"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type vm:DealsViewModel}}, Path=JoinPoolCommand}"
+                                            CommandParameter="{Binding .}"/>
+
+                                    <Label Text="* ₹5,000 token is 100% refundable if quorum is not reached or before deal locks."
+                                           FontSize="10"
+                                           TextColor="#6B7280"
+                                           HorizontalOptions="Center"/>
+                                </VerticalStackLayout>
+
+                            </VerticalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

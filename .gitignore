@@ -1,0 +1,38 @@
+## .NET and Visual Studio
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+[Tt]emp/
+*.user
+*.userosscache
+*.sln.docstates
+*.suo
+.vs/
+.idea/
+*.userprefs
+*.pidb
+*.booproj
+*.svclog
+
+## Build & Package outputs
+*.apk
+*.aab
+*.msi
+*.msix
+*.appx
+*.appxbundle
+*.cer
+*.pfx
+*.keystore
+
+## OS Generated
+.DS_Store
+Thumbs.db
+ehthumbs.db
+[Dd]esktop.ini
+
+## Crash & diagnostic logs
+*.log
+*.crash
+*.dmp

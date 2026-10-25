@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="CarPoolIndia.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:CarPoolIndia.Views"
+    Title="CarPool India"
+    Shell.FlyoutBehavior="Disabled"
+    Shell.BackgroundColor="#0B0F19"
+    Shell.ForegroundColor="#F9FAFB"
+    Shell.TitleColor="#F9FAFB"
+    Shell.TabBarBackgroundColor="#0F172A"
+    Shell.TabBarForegroundColor="#60A5FA"
+    Shell.TabBarUnselectedColor="#6B7280"
+    Shell.TabBarTitleColor="#93C5FD">
+
+    <TabBar>
+        <!-- Tab 1: Curated Deals (Car) -->
+        <Tab Title="Curated Deals"
+             Icon="car_icon.svg"
+             Route="CuratedDeals">
+            <ShellContent
+                Title="Curated Deals"
+                ContentTemplate="{DataTemplate views:DealsPage}"
+                Route="DealsPage" />
+        </Tab>
+
+        <!-- Tab 2: My Bookings (Clipboard/Ticket) -->
+        <Tab Title="My Bookings"
+             Icon="clipboard_icon.svg"
+             Route="MyBookings">
+            <ShellContent
+                Title="My Bookings"
+                ContentTemplate="{DataTemplate views:BookingsPage}"
+                Route="BookingsPage" />
+        </Tab>
+
+        <!-- Tab 3: How It Works & Support (Help/WhatsApp) -->
+        <Tab Title="How It Works &amp; Support"
+             Icon="support_icon.svg"
+             Route="Support">
+            <ShellContent
+                Title="How It Works &amp; Support"
+                ContentTemplate="{DataTemplate views:SupportPage}"
+                Route="SupportPage" />
+        </Tab>
+    </TabBar>
+
+</Shell>
